@@ -88,11 +88,14 @@ func setup_view() -> void:
 		# print formated content:
 		# firstly, by replacing `{variable_name}` tags with respective [current] value
 		var reformatted_content = _NODE_RESOURCE.data.content.format(_CURRENT_VARIABLES_VALUE_BY_NAME)
+		
 		# then because this node type supports BBCode ...
 		Content.clear() # clean up and try to set bbcode
 		if Content.append_bbcode(reformatted_content) != OK:
 			# or normal text if there was problem parsing it
 			Content.set_text(reformatted_content)
+		else:
+			Content.set_bbcode(reformatted_content)
 	else:
 		Content.set_deferred("text", CONTENT_UNSET_MESSAGE)
 	# ask for console clearance ...
