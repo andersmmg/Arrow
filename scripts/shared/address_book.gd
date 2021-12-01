@@ -10,7 +10,7 @@ class_name Addressbook
 # CAUTION! handle with care: `main_ui_management.gd` and other scripts
 # use lowercase panel names in their logic.
 const PANELS = {
-	"inspector": "/root/Main/FloatToolsLayer/Container/Inspector",
+	"inspector": "/root/Main/Editor/Center/Inspector",
 	"preferences": "/root/Main/BlockingLayer/Container/Preferences",
 	"new_project_prompt":  "/root/Main/BlockingLayer/Container/NewProjectPrompt",
 	"console": "/root/Main/FloatToolsLayer/Container/Console",
@@ -91,147 +91,147 @@ const NOTIFICATION = {
 }
 
 const INSPECTOR = {
-	"itself": "/root/Main/FloatToolsLayer/Container/Inspector",
-	"drag_point": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/Titlebar/DragPoint",
-	"resize_point": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/Titlebar/ResizePoint",
-	"TAB_CONTAINER": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer",
+	"itself": PANELS.inspector,
+	"drag_point": PANELS.inspector+"/VBoxContainer/Titlebar/DragPoint",
+	"resize_point": PANELS.inspector+"/VBoxContainer/Titlebar/ResizePoint",
+	"TAB_CONTAINER": PANELS.inspector+"/VBoxContainer/TabContainer",
 	# Tabs ...
 	"PROJECT": {
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Project",
 		"PROJECT_LIST_MODES":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/ProjectListModes",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes",
 			"LOCAL_MODE": {
-				"LISTED_PROJECTS_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/ScrollContainer/ListedProjects",
+				"LISTED_PROJECTS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/ScrollContainer/ListedProjects",
 				"TOOLS": {
-					"NEW_MENU_BUTTON" : "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/NewLocalProjectMenu",
-					"REMOVE_LOCAL_PROJECT_BUTTON" : "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/RemoveLocalProject",
-					"OPEN_LOCAL_PROJECT_BUTTON" : "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/OpenLocalProject",
+					"NEW_MENU_BUTTON" : PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/NewLocalProjectMenu",
+					"REMOVE_LOCAL_PROJECT_BUTTON" : PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/RemoveLocalProject",
+					"OPEN_LOCAL_PROJECT_BUTTON" : PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/OpenLocalProject",
 				}
 			},
 		},
 		"LOCAL_PROJECT_PROPERTIES": {
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties",
 			"TITLE_CONFIGURATION": {
-				"TITLE_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/LocalProjectConfigTitle/Title",
-				"SET_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/LocalProjectConfigTitle/Set"
+				"TITLE_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/LocalProjectConfigTitle/Title",
+				"SET_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/LocalProjectConfigTitle/Set"
 			},
-			"RTL_CONFIGURATION_CHECKBOX": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectConfigRTL",
-			"CLOSE": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectClose",
-			"MORE_TOOLS_MENU_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectMoreTools",
+			"RTL_CONFIGURATION_CHECKBOX": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectConfigRTL",
+			"CLOSE": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectClose",
+			"MORE_TOOLS_MENU_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/HBoxContainer/LocalProjectMoreTools",
 			"VERSIONING": {
 				"LAST_SAVE": {
-					"TIME_STAMP": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/LastSave/Timestamp",
-					"REVERT_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/LastSave/Revert",
+					"TIME_STAMP": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/LastSave/Timestamp",
+					"REVERT_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/LastSave/Revert",
 				},
-				"SNAPSHOTS_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/ScrollContainer/SnapshotsList",
+				"SNAPSHOTS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/ScrollContainer/SnapshotsList",
 				"SNAPSHOT_TOOLS": {
-					"RESTORE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Restore",
-					"TAKE_NEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Take",
-					"PREVIEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Preview",
-					"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Remove",
+					"RESTORE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Restore",
+					"TAKE_NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Take",
+					"PREVIEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Preview",
+					"REMOVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Project/LocalProjectProperties/DraftManagement/VBoxContainer/SnapshotTools/Remove",
 				}
 			}
 		}
 	},
 	"NODE": {
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node",
-		"SUB_INSPECTOR_BLOCKER_MESSAGE": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/SubInspectorBlockMessage",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Node",
+		"SUB_INSPECTOR_BLOCKER_MESSAGE": PANELS.inspector+"/VBoxContainer/TabContainer/Node/SubInspectorBlockMessage",
 		"PROPERTIES": {
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties",
-			"NODE_TYPE_LABEL": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeTypeLabel",
-			"NODE_UID_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeUID/Edit",
-			"NODE_IS_SKIPPED_CHECK": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeState/NodeIsSkipped",
-			"NODE_REFERRERS_MENU_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeState/NodeReferrers",
-			"SUB_INSPECTOR_HOLDER": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/VSplitContainer/SubInspectorHolder",
-			"NODE_NOTES_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/VSplitContainer/NodeNotes/Edit",
-			"FOCUS_NODE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeState/ShowFocusNode",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties",
+			"NODE_TYPE_LABEL": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeTypeLabel",
+			"NODE_UID_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeUID/Edit",
+			"NODE_IS_SKIPPED_CHECK": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeState/NodeIsSkipped",
+			"NODE_REFERRERS_MENU_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeState/NodeReferrers",
+			"SUB_INSPECTOR_HOLDER": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/VSplitContainer/SubInspectorHolder",
+			"NODE_NOTES_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/VSplitContainer/NodeNotes/Edit",
+			"FOCUS_NODE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeState/ShowFocusNode",
 			"NODE_TOOLS": {
-				"RESET_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/ResetNodeParams",
-				"HISTORY_BACK": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/NodeHistoryBack",
-				"HISTORY_FORE": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/NodeHistoryFore",
-				"UPDATE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/UpdateNode",
+				"RESET_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/ResetNodeParams",
+				"HISTORY_BACK": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/NodeHistoryBack",
+				"HISTORY_FORE": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/NodeHistoryFore",
+				"UPDATE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Node/Properties/NodeTools/HBoxContainer/UpdateNode",
 			},
 		},
 	},
 	"SCENES":{
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes",
-		"SCENES_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/ScrollContainer/ScenesList",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes",
+		"SCENES_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/ScrollContainer/ScenesList",
 		"TOOLS":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions",
-			"NEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/NewScene",
-			"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/RemoveScene",
-			"EDIT_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/OpenSceneToEdit",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions",
+			"NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/NewScene",
+			"REMOVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/RemoveScene",
+			"EDIT_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/OpenSceneToEdit",
 		},
 		"EDIT":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs",
-			"NAME_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs/VBoxContainer/SceneName/Edit",
-			"UPDATE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs/VBoxContainer/SceneName/Set",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs",
+			"NAME_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs/VBoxContainer/SceneName/Edit",
+			"UPDATE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/OpenSceneConfigs/VBoxContainer/SceneName/Set",
 		},
 	},
 	"MACROS":{
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros",
-		"MACROS_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/ScrollContainer/MacrosList",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros",
+		"MACROS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/ScrollContainer/MacrosList",
 		"EDIT":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs",
-			"NAME_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/MacroName/Edit",
-			"UPDATE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/MacroName/Set",
-			"CLOSE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/CloseMacro",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs",
+			"NAME_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/MacroName/Edit",
+			"UPDATE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/MacroName/Set",
+			"CLOSE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/CloseMacro",
 		},
 		"TOOLS":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools",
-			"NEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/NewMacro",
-			"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/RemoveMacro",
-			"EDIT_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/OpenMacroToEdit",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools",
+			"NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/NewMacro",
+			"REMOVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/RemoveMacro",
+			"EDIT_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroTools/HBoxContainer/OpenMacroToEdit",
 		},
 		"MACRO_INSTANCES":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances",
-			"INDICATION": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances/MacroInstancesPagination/Indication",
-			"GO_TO_MENU_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances/MacroInstancesPagination/GoToInstance",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances",
+			"INDICATION": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances/MacroInstancesPagination/Indication",
+			"GO_TO_MENU_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/MacroInstances/MacroInstancesPagination/GoToInstance",
 		}
 	},
 	"VARIABLES": {
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables",
-		"TYPE_SELECT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/PanelContainer/HBoxContainer/TypeSelect",
-		"NEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/PanelContainer/HBoxContainer/NewButton",
-		"VARIABLES_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/ScrollContainer/VariablesList",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Variables",
+		"TYPE_SELECT": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/PanelContainer/HBoxContainer/TypeSelect",
+		"NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/PanelContainer/HBoxContainer/NewButton",
+		"VARIABLES_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/ScrollContainer/VariablesList",
 		"VARIABLE_EDITOR":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor",
 			"VARIABLE_USAGES":{
-				"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages",
-				"INDICATION": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages/VariableUsagesPagination/Indication",
-				"GO_TO_MENU_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages/VariableUsagesPagination/GoToUsage",
+				"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages",
+				"INDICATION": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages/VariableUsagesPagination/Indication",
+				"GO_TO_MENU_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableUsages/VariableUsagesPagination/GoToUsage",
 			},
-			"NAME_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer/VariablesNameEdit",
+			"NAME_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer/VariablesNameEdit",
 			"INITIAL_VALUE_EDITS":{
-				"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue",
-				"str": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/String",
-				"num": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/Number",
-				"bool": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/Boolean",
+				"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue",
+				"str": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/String",
+				"num": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/Number",
+				"bool": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/VariableInitial/VariableInitialValue/Boolean",
 			},
-			"SAVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer2/SaveVariable",
-			"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer2/RemoveVariable",
+			"SAVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer2/SaveVariable",
+			"REMOVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Variables/VBoxContainer/VariableEditor/VBoxContainer/HBoxContainer2/RemoveVariable",
 		},
 	},
 	"CHARACTERS":{
-		"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters",
-		"CHARACTERS_LIST": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/ScrollContainer/CharactersList",
-		"NEW_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterCreate/HBoxContainer/NewCharacter",
-		"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterCreate/HBoxContainer/RemoveCharacter",
+		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Characters",
+		"CHARACTERS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/ScrollContainer/CharactersList",
+		"NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterCreate/HBoxContainer/NewCharacter",
+		"REMOVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterCreate/HBoxContainer/RemoveCharacter",
 		"CHARACTER_EDITOR": {
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor",
-			"COLOR_PICKER_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/CharacterColor",
-			"NAME_EDIT": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/CharacterNameEdit",
-			"SAVE_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/SaveCharacter",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor",
+			"COLOR_PICKER_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/CharacterColor",
+			"NAME_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/CharacterNameEdit",
+			"SAVE_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/HBoxContainer/SaveCharacter",
 		},
 		"CHARACTER_APPEARANCE":{
-			"itself": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance",
-			"INDICATION": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance/CharacterAppearancePagination/Indication",
-			"GO_TO_MENU_BUTTON": "/root/Main/FloatToolsLayer/Container/Inspector/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance/CharacterAppearancePagination/GoToAppearance",
+			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance",
+			"INDICATION": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance/CharacterAppearancePagination/Indication",
+			"GO_TO_MENU_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Characters/VBoxContainer/CharacterEditor/VBoxContainer/CharacterAppearance/CharacterAppearancePagination/GoToAppearance",
 		}
 	}
 }
 
-const GRID = "/root/Main/Editor/Center/GridGraphEdit"
+const GRID = "/root/Main/Editor/Center/GraphEditor/GridGraphEdit"
 
 const GRID_CONTEXT_MENU = {
 	"itself": "/root/Main/FloatToolsLayer/Container/GridContextMenu",
@@ -247,7 +247,7 @@ const GRID_CONTEXT_MENU = {
 	"REMOVE_BUTTON": "/root/Main/FloatToolsLayer/Container/GridContextMenu/VBoxContainer/EditTools/Remove",
 }
 
-const MINIMAP = "/root/Main/Editor/Center/MinimapBox/Minimap"
+const MINIMAP = "/root/Main/Editor/Center/GraphEditor/MinimapBox/Minimap"
 
 const QUERY = {
 	"itself": "/root/Main/Editor/Bottom/QueryPanel",
