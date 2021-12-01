@@ -38,6 +38,7 @@ func _ready() -> void:
 	self.set_process_input(true)
 	# and finally, report app state
 	print("Sandbox: ", ("ON" if _SANDBOX else "OFF"))
+	OS.set_window_maximized(true)
 	pass
 
 func handle_cli_arguments():

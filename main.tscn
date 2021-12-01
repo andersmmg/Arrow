@@ -306,7 +306,7 @@ margin_top = 3.0
 margin_right = 242.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-text = "Prefrences"
+text = "Preferences"
 
 [node name="PreferencesDismiss" type="Button" parent="BlockingLayer/Container/Preferences/VBoxContainer/HBoxContainer"]
 margin_left = 246.0
@@ -1666,7 +1666,7 @@ margin_bottom = -0.822922
 size_flags_horizontal = 3
 size_flags_vertical = 3
 right_disconnects = true
-scroll_offset = Vector2( 0, -40 )
+scroll_offset = Vector2( 0, -1.01328e-06 )
 snap_distance = 10
 script = ExtResource( 5 )
 __meta__ = {
