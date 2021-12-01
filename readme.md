@@ -3,7 +3,9 @@
 # Arrow
 ***Game Narrative Design Tool***
 
-[Download](#download) | [Support](#support-arrow) | [Runtimes](#runtimes) | [Guides](#guides)
+[Original](https://github.com/mhgolkar/Arrow) | [Download](#download) | [Support](#support-arrow) | [Runtimes](#runtimes) | [Guides](#guides)
+
+This repository is a modified version to better fit how I like it. Feel free to use it if you want!
 
 Arrow is a handy, free, open-source and feature-rich tool to
 design **game narrative**, develop **text-adventures**,
@@ -30,6 +32,8 @@ Notable Features:
 
 
 ## Download
+
+These are downloads for the original version, NOT from this modified version. For now you'll need to run it from [the repo](https://github.com/mhgolkar/Arrow) instead.
 
 Arrow prebuilt executables are available to download from the archive of [releases].
 Following links are to the *latest*:
