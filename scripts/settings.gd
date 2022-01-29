@@ -6,10 +6,10 @@
 # Other scripts use this class as a centralized set of configurations
 class_name Settings
 
-const ARROW_VERSION = "1.4.0"
+const ARROW_VERSION = "1.5.0"
 const ARROW_WEBSITE = "https://github.com/mhgolkar/Arrow"
 
-const CURRENT_RELEASE_TAG = "v1.4.0"
+const CURRENT_RELEASE_TAG = "v1.5.0"
 const ARROW_RELEASES_ARCHIVE = "https://github.com/mhgolkar/Arrow/releases/"
 const LATEST_RELEASE_CHECK_API = "https://api.github.com/repos/mhgolkar/Arrow/releases/latest"
 
@@ -67,11 +67,11 @@ const SKIP_INITIAL_COPY_TRACK_FOR_NODE_TYPE = [
 # Grid
 
 const GRID_INITIAL_ZOOM = 1.0
+const ZOOM_ENHANCEMENT_FACTOR = 0.1
 const SKIP_NODE_SELF_MODULATION_COLOR_ON  = Color( 0.75, 0.75, 0.75, 0.75)
 const SKIP_NODE_SELF_MODULATION_COLOR_OFF = Color( 1, 1, 1, 1 )
 const GRID_GO_TO_AUTO_ADJUSTMENT_FACTOR = Vector2(0.5, 0.5) # it moves view offset
 const NODE_HIGHLIGHT_FADE_TIME_OUT = 0.35 # Seconds
-const MOUSE_WHEEL_ZOOM_ENHANCEMENT_FACTOR = 0.124
 
 const QUICK_INSERT_NODES_ON_SINGLE_CLICK = false
 const INVALID_QUICK_CONNECTION = {
@@ -164,8 +164,7 @@ const RANDOM_PROJECT_NAME_AFFIX_LENGTH = 3
 
 # Minimap
 
-const MINIMAP_ENABLED = true
-const MINIMAP_USE_GODOT_BUILT_IN_ONLY = true # Godot ^3.2.4
+const CLASSIC_MINIMAP_ENABLED = true
 const MINIMAP_PANEL_OPACITY_MODULATION_COLOR_HIDE = Color( 1, 1, 1, 0.5 )
 const MINIMAP_PANEL_OPACITY_MODULATION_COLOR_SHOW = Color( 1, 1, 1, 1 )
 const MINIMAP_DEFAULT_NODE_DRAWING_COLOR = Color( 0.5, 0.5, 0.5, 0.9 )

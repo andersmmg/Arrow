@@ -3,9 +3,7 @@
 # Arrow
 ***Game Narrative Design Tool***
 
-[Original](https://github.com/mhgolkar/Arrow) | [Download](#download) | [Support](#support-arrow) | [Runtimes](#runtimes) | [Guides](#guides)
-
-This repository is a modified version to better fit how I like it. Feel free to use it if you want!
+[Download](#download) | [Support](#support-arrow) | [Runtimes](#runtimes) | [Guides](#guides)
 
 Arrow is a handy, free, open-source and feature-rich tool to
 design **game narrative**, develop **text-adventures**,
@@ -33,10 +31,9 @@ Notable Features:
 
 ## Download
 
-These are downloads for the original version, NOT from this modified version. For now you'll need to run it from [the repo](https://github.com/mhgolkar/Arrow) instead.
-
 Arrow prebuilt executables are available to download from the archive of [releases].
-Following links are to the *latest*:
+
+Following links are to the *latest* stable releases:
 
 Linux X11 [x86 (32-bit)][linux-x11-x86-latest] | [x86_64 (64-bit)][linux-x11-x86-64-latest]
 
@@ -90,10 +87,10 @@ Have a Good Time
 
 <!-- download -->
 [releases]: https://github.com/mhgolkar/Arrow/releases
-[linux-x11-x86-64-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.4.0/Arrow-v1.4.0-linux-x86_64.tar.gz
-[linux-x11-x86-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.4.0/Arrow-v1.4.0-linux-x86.tar.gz
-[win-32-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.4.0/Arrow-v1.4.0-win.32.zip
-[win-64-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.4.0/Arrow-v1.4.0-win.64.zip
+[linux-x11-x86-64-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.5.0/Arrow-v1.5.0-linux-x86_64.tar.gz
+[linux-x11-x86-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.5.0/Arrow-v1.5.0-linux-x86.tar.gz
+[win-32-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.5.0/Arrow-v1.5.0-win.32.zip
+[win-64-latest]: https://github.com/mhgolkar/Arrow/releases/download/v1.5.0/Arrow-v1.5.0-win.64.zip
 <!-- wiki -->
 [wiki-home]: https://github.com/mhgolkar/Arrow/wiki/
 [wiki-quick-start-guide]: https://github.com/mhgolkar/Arrow/wiki/quick-start-guide

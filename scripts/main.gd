@@ -38,7 +38,6 @@ func _ready() -> void:
 	self.set_process_input(true)
 	# and finally, report app state
 	print("Sandbox: ", ("ON" if _SANDBOX else "OFF"))
-	OS.set_window_maximized(true)
 	pass
 
 func handle_cli_arguments():
@@ -115,6 +114,13 @@ func toggle_about() -> void:
 	UI.toggle_panel_visibility("about")
 	pass
 
+func store_window_state() -> void:
+	var window_state = UI.read_window_state()
+	Configs.TEMPORARY.window = window_state
+	Configs.save_configurations_and_confirm(Configs.TEMPORARY, null, false)
+	print_debug("window state saved: ", Configs.CONFIRMED.window)
+	pass
+
 func safe_quit_app() -> void:
 	Mind.close_project(false, true)
 	pass
@@ -123,6 +129,7 @@ func quit_app(exit_code:int = OK) -> void:
 	if exit_code != OK: # != 0
 		printerr("Quiting app due to unexpected behavior!")
 	yield(TheTree, "idle_frame")
+	store_window_state()
 	TheTree.quit(exit_code)
 	pass
 

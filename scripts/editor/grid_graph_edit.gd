@@ -14,7 +14,8 @@ onready var GridContextMenu = get_node(Addressbook.GRID_CONTEXT_MENU.itself)
 
 onready var Minimap = get_node(Addressbook.MINIMAP)
 onready var MinimapBox = Minimap.get_parent()
-const USE_ARROW_MINIMAP:bool = ( Settings.MINIMAP_ENABLED && ( ! Settings.MINIMAP_USE_GODOT_BUILT_IN_ONLY ) )
+const USE_ARROW_MINIMAP:bool = Settings.CLASSIC_MINIMAP_ENABLED
+
 const CLIPBOARD_MODE = Settings.CLIPBOARD_MODE
 
 var Utils = Helpers.Utils
@@ -40,10 +41,12 @@ func _ready() -> void:
 	DEFAULT_ZOOM = self.get('zoom')
 	register_connections()
 	setup_valid_connection_types()
-	# minimap ?
-	MinimapBox.set_visible(USE_ARROW_MINIMAP)
-	if 'minimap_enabled' in self:
-		self.set('minimap_enabled', (Settings.MINIMAP_ENABLED && ( ! USE_ARROW_MINIMAP )))
+	# classic minimap ?
+	if USE_ARROW_MINIMAP :
+		MinimapBox.set_visible( ! self.is_minimap_enabled() )
+	else:
+		self.set_minimap_enabled(true)
+	resize_native_minimap()
 	pass
 
 func register_connections() -> void:
@@ -78,15 +81,17 @@ func offset_from_position(position:Vector2) -> Vector2:
 	var scroll_offset = self.get_scroll_ofs()
 	# position is also relative to the top left corner of the parent (visible part)
 	# therefore : 
-	var grid_offset_of_position = (scroll_offset + position)
+	var grid_offset_of_position = (scroll_offset + position) / self.get_zoom()
 	return grid_offset_of_position
 
 # (right-click on the grid)
 func _on_popup_request(position:Vector2) -> void:
-	GridContextMenu.call_deferred("show_up", position, offset_from_position(position))
+	var relative_click_position = self.get_local_mouse_position()
+	GridContextMenu.call_deferred("show_up", position, offset_from_position(relative_click_position))
 	pass
 
-func get_node_under_cursor(return_id:bool = false):
+func get_nodes_under_cursor(return_id:bool = false, return_first:bool = false) -> Array:
+	var nodes_there = []
 	var mouse_position = TheViewport.get_mouse_position()
 	for node_id in _DRAWN_NODES_BY_ID:
 		var node = _DRAWN_NODES_BY_ID[node_id]
@@ -94,13 +99,40 @@ func get_node_under_cursor(return_id:bool = false):
 			is_instance_valid(node) &&
 			node.get_global_rect().has_point(mouse_position)
 		):
-			return (
+			nodes_there.append(
 				node_id
 				if return_id == true
 				else
 				{ "id": node_id, "node": node }
 			)
-	return null
+			if return_first:
+				return nodes_there
+	return nodes_there
+
+func get_nodes_in(boundry: Rect2, return_id:bool = false, return_first:bool = false) -> Array:
+	var nodes_in_boundry = []
+	for node_id in _DRAWN_NODES_BY_ID:
+		var node = _DRAWN_NODES_BY_ID[node_id]
+		if (
+			is_instance_valid(node) &&
+			boundry.encloses( node.get_global_rect() )
+		):
+			nodes_in_boundry.append(
+				node_id
+				if return_id == true
+				else
+				{ "id": node_id, "node": node }
+			)
+			if return_first:
+				return nodes_in_boundry
+	return nodes_in_boundry
+
+func sellect_all_in(boundry: Rect2) -> void:
+	var nodes_in_boundry = get_nodes_in(boundry)
+	for each in nodes_in_boundry:
+		each.node.set_deferred("selected", true)
+		self.call_deferred("_on_node_selection", each.node)
+	pass
 
 func slot_is_available(node_id:int, slot_idx:int, in_else_out:bool = true) -> bool:
 	if _CONNECTION_RELATIONS_BY_ID_DIR_SLOT.has(node_id):
@@ -147,16 +179,21 @@ func get_first_available_slot(node_id:int, incoming:bool) -> int:
 
 func try_assisted_connection(outgoing:bool, first_side_slot:int, first_side_name:String) -> bool:
 	if _ALLOW_ASSISTED_CONNECTION:
-		var target = get_node_under_cursor()
-		if target != null:
-			if target.node.name != first_side_name:
-				var target_slot = get_first_available_slot(target.id, outgoing) # = incoming for the other side
-				if target_slot >= 0 :
-					if outgoing:
-						_on_connection_request(first_side_name, first_side_slot, target.node.name, target_slot)
-					else:
-						_on_connection_request(target.node.name, target_slot, first_side_name, first_side_slot)
-			return true
+		var nodes_there = get_nodes_under_cursor()
+		if nodes_there.size() > 0:
+			# We try to coonect to the first target ...
+			for target in nodes_there:
+				# in all the nodes under the cursor,
+				if target.node.name != first_side_name: # which is not the first side,
+					var target_slot = get_first_available_slot(target.id, outgoing) # = incoming for the other side
+					# and has at least one slot:
+					if target_slot >= 0 :
+						if outgoing:
+							_on_connection_request(first_side_name, first_side_slot, target.node.name, target_slot)
+						else:
+							_on_connection_request(target.node.name, target_slot, first_side_name, first_side_slot)
+						# Return early and break the loop
+						return true
 	return false
 
 func _on_connection_with_empty(node_name:String, slot:int, release_position:Vector2, outgoing:bool) -> void:
@@ -232,12 +269,13 @@ func clean_grid() -> void:
 	# this is why we did it manually here.
 	pass
 
-func got_to_offset(destination, auto_adjust:bool = false) -> void:
+func got_to_offset(destination, auto_adjust:bool = false, reset_zoom:bool = true) -> void:
 	if destination is Array:
 		destination = Utils.array_to_vector2(destination)
 	if destination is Vector2:
 		if auto_adjust:
-			self.set_zoom(1)
+			if reset_zoom:
+				self.set_zoom(1)
 			var adjustment = ( self.get_size() * Settings.GRID_GO_TO_AUTO_ADJUSTMENT_FACTOR )
 			destination = (destination - adjustment).floor()
 		self.call_deferred("set_scroll_ofs", destination)
@@ -474,6 +512,14 @@ func _on_node_move_end() -> void:
 		Minimap.call_deferred("refresh")
 	pass
 
+func update_sellected_nodes_offset(direction:Vector2, speed: float = (self.snap_distance / 2)) -> void:
+	var movement = direction * speed
+	for node_id in _ALREADY_SELECTED_NODES_BY_ID:
+		var current_offset = _ALREADY_SELECTED_NODES_BY_ID[node_id].get_offset()
+		_ALREADY_SELECTED_NODES_BY_ID[node_id].set_offset(current_offset + movement)
+	_on_node_move_end()
+	pass
+
 func clean_node_off(node_id:int = -1):
 	if _DRAWN_NODES_BY_ID.has(node_id):
 		# first remove connections
@@ -518,26 +564,42 @@ func shrink_to_fit(resizing_node:Node) -> void:
 		resizing_node.set_size(real_fit)
 	pass
 
-# Scroll to Zoom
+func resize_native_minimap() -> void:
+	# to make sure the native minimap is not masked by inspector
+	self.set_minimap_size(
+		Vector2(
+			self.get_size().x - 10, # (with a gap to make sure the resize handle is visible)
+			(self.get_size().y / 4)
+		)
+	)
+	pass
+
+func update_zoom(magnitude: float, direction: bool) -> void:
+	var current_zoom = self.get("zoom");
+	var zoom_direction = ( 1 if direction else -1 )
+	var new_zoom = current_zoom + (
+		magnitude * zoom_direction *
+		Settings.ZOOM_ENHANCEMENT_FACTOR
+	)
+	if new_zoom != current_zoom:
+		self.set("zoom", new_zoom)
+	pass
+
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventWithModifiers:
+	if event is InputEventKey:
+		# Without Modifiers
+		# > Press
+		if event.is_echo() == false && event.is_pressed() == true:
+			match event.get_scancode():
+				KEY_DELETE:
+					request_mind("clean_clipboard", null)
+					if _ALREADY_SELECTED_NODE_IDS.size() != 0:
+						if Main.Mind.batch_remove_resources(_ALREADY_SELECTED_NODE_IDS, "nodes", true, true): # check-only
+							request_mind("remove_selected_nodes", null)
+		# With Modifiers
 		if event.get_control():
-			# zoom
-			if event is InputEventMouseButton:
-				if event.button_index == BUTTON_WHEEL_UP || event.button_index == BUTTON_WHEEL_DOWN:
-					var current_zoom = self.get("zoom");
-					var mouse_wheel_factor:float = ( event.factor if event.factor != 0 else 1.0 )
-					var mouse_wheel_direction = ( 1 if event.button_index == BUTTON_WHEEL_UP else -1 )
-					var new_zoom = current_zoom + (
-						mouse_wheel_factor * mouse_wheel_direction *
-						Settings.MOUSE_WHEEL_ZOOM_ENHANCEMENT_FACTOR
-					)
-					if new_zoom != current_zoom:
-						self.set("zoom", new_zoom)
-				elif event.button_index == BUTTON_MIDDLE:
-					self.set("zoom", DEFAULT_ZOOM)
-			# node cut/copy/paste
-			elif event is InputEventKey && event.is_echo() == false && event.is_pressed() == true :
+			# > Press
+			if event.is_echo() == false && event.is_pressed() == true:
 				match event.get_scancode():
 					KEY_C:
 						request_mind("clean_clipboard", null)
@@ -549,9 +611,33 @@ func _gui_input(event: InputEvent) -> void:
 							request_mind("clipboard_push_selection", CLIPBOARD_MODE.CUT)
 					KEY_V:
 						request_mind("clipboard_pull", offset_from_position( self.get_local_mouse_position() ) )
-					KEY_DELETE:
-						request_mind("clean_clipboard", null)
-						if _ALREADY_SELECTED_NODE_IDS.size() != 0:
-							if Main.Mind.batch_remove_resources(_ALREADY_SELECTED_NODE_IDS, "nodes", true, true): # check-only
-								request_mind("remove_selected_nodes", null)
+			# > Echo
+			match event.get_scancode():
+				KEY_KP_ADD:
+					update_zoom(1, true)
+				KEY_KP_SUBTRACT:
+					update_zoom(1, false)
+				KEY_KP_0:
+					self.set("zoom", DEFAULT_ZOOM)
+				KEY_0:
+					self.set("zoom", DEFAULT_ZOOM)
+				KEY_EQUAL:
+					update_zoom(1, true)
+				KEY_PLUS:
+					update_zoom(1, true)
+				KEY_MINUS:
+					update_zoom(1, false)
+				KEY_UP:
+					update_sellected_nodes_offset(Vector2.UP)
+				KEY_DOWN:
+					update_sellected_nodes_offset(Vector2.DOWN)
+				KEY_LEFT:
+					update_sellected_nodes_offset(Vector2.LEFT)
+				KEY_RIGHT:
+					update_sellected_nodes_offset(Vector2.RIGHT)
+	pass
+
+func _process(delta):
+	# Because there is no event for godot built-in minimap being activated
+	MinimapBox.set_visible( ! self.is_minimap_enabled() )
 	pass

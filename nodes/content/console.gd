@@ -31,11 +31,13 @@ var _DEFERRED_VIEW_PLAY_SLOT:int = -1
 
 onready var Title = get_node("./ContentPlay/Title")
 onready var Content = get_node("./ContentPlay/Content")
+onready var Brief = get_node("./ContentPlay/Brief")
 onready var Continue = get_node("./ContentPlay/Continue")
 
 const TITLE_UNSET_MESSAGE = "Untitled"
 const TITLE_UNSET_SELF_MODULATION_COLOR  = Color(1, 1, 1, 0.30)
 const CONTENT_UNSET_MESSAGE = "No Content."
+const BRIEF_UNSET_MESSAGE = "No Brief."
 
 func _ready() -> void:
 	register_connections()
@@ -88,7 +90,6 @@ func setup_view() -> void:
 		# print formated content:
 		# firstly, by replacing `{variable_name}` tags with respective [current] value
 		var reformatted_content = _NODE_RESOURCE.data.content.format(_CURRENT_VARIABLES_VALUE_BY_NAME)
-		
 		# then because this node type supports BBCode ...
 		Content.clear() # clean up and try to set bbcode
 		if Content.append_bbcode(reformatted_content) != OK:
@@ -98,6 +99,15 @@ func setup_view() -> void:
 			Content.set_bbcode(reformatted_content)
 	else:
 		Content.set_deferred("text", CONTENT_UNSET_MESSAGE)
+	# Brief
+	if resource_has_valid_string_data("brief"):
+		# ditto ...
+		var reformatted_brief = _NODE_RESOURCE.data.brief.format(_CURRENT_VARIABLES_VALUE_BY_NAME)
+		Brief.clear()
+		if Brief.append_bbcode(reformatted_brief) != OK:
+			Brief.set_text(reformatted_brief)
+	else:
+		Brief.set_deferred("text", BRIEF_UNSET_MESSAGE)
 	# ask for console clearance ...
 	if content_wants_clearance():
 		emit_signal("clear_up")

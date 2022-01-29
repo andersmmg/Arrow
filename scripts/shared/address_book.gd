@@ -101,7 +101,8 @@ const INSPECTOR = {
 		"PROJECT_LIST_MODES":{
 			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes",
 			"LOCAL_MODE": {
-				"LISTED_PROJECTS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/ScrollContainer/ListedProjects",
+				"LISTED_PROJECTS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/VSplitContainer/ScrollContainer/ListedProjects",
+				"SELECTED_PROJECT_DESCRIPTION": PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/VSplitContainer/ProjectDescription",
 				"TOOLS": {
 					"NEW_MENU_BUTTON" : PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/NewLocalProjectMenu",
 					"REMOVE_LOCAL_PROJECT_BUTTON" : PANELS.inspector+"/VBoxContainer/TabContainer/Project/ProjectListModes/LocalMode/LocalProjects/LocalProjectsActions/RemoveLocalProject",
@@ -155,7 +156,8 @@ const INSPECTOR = {
 	},
 	"SCENES":{
 		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes",
-		"SCENES_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/ScrollContainer/ScenesList",
+		"SCENES_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/VSplitContainer/ScrollContainer/ScenesList",
+		"SCENE_ENTRY_NOTES": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/VSplitContainer/SceneEntryNote",
 		"TOOLS":{
 			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions",
 			"NEW_BUTTON": PANELS.inspector+"/VBoxContainer/TabContainer/Scenes/VBoxContainer/SceneActions/HBoxContainer/NewScene",
@@ -170,7 +172,8 @@ const INSPECTOR = {
 	},
 	"MACROS":{
 		"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros",
-		"MACROS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/ScrollContainer/MacrosList",
+		"MACROS_LIST": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/VSplitContainer/ScrollContainer/MacrosList",
+		"MACRO_ENTRY_NOTE": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/VSplitContainer/MacroEntryNote",
 		"EDIT":{
 			"itself": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs",
 			"NAME_EDIT": PANELS.inspector+"/VBoxContainer/TabContainer/Macros/VBoxContainer/OpenMacroConfigs/VBoxContainer/MacroName/Edit",
